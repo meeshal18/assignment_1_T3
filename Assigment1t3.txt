@@ -1,0 +1,20 @@
+#Q1(C )#First sort the files then saved them with command      sort annotation.tab > sortedannotation.tab     sort expression.tab > sortedexpression.tab#then join them with command    join -t$'\t' -1 1 -2 1 -o 1.1,1.2,2.2,1.3 sortedannotation.tab sortedexpression.tab#Question 1(d)#mySql code to find duplicates
+
+SELECT metabolism ,count(*) c FROM annotation GROUP BY metabolism HAVING c >1 ;
+
+
+#Question 2 (a)
+	SELECT LastName,FirstName,MemberID  FROM Member where Coach IS NULL;
+#Question 2 (b)
+
+   SELECT LastName , FirstName , MemberID from Member  where JoinDate >= '2013-01-01';
+
+#Question 2 (c )
+
+       Select DISTINCT  m.MemberID, m.LastName , m.FirstName from Member m join Entry e on m.       MemberID=e.MemberID where e.year<> 2013  ;
+
+#Question 2 (d)
+
+Select DISTINCT  m.MemberID, m.LastName , m.FirstName from Member m INNER JOIN 
+         (SELECT DISTINCT e1.MemberID from Entry e1 ,Entry e2, Entry           e3 WHERE e1.MemberID=e2.MemberID and e2.MemberID= e3.MemberID and e1.Year =’2013’and e2.Year=’2014’ and e3.Year=’2015’
+ ) Table on m.MemberID=Table.MemberID ;
